@@ -1,13 +1,14 @@
 import pg from "pg";
+import 'dotenv/config'
 
 const { Pool } = pg;
 
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  password: "yash2004",
-  database: "CRUD",
-  port: "5432",
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
 const getContacts = async (req, res) => {
