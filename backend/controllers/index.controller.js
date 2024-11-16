@@ -44,11 +44,12 @@ const createContact = async (req, res) => {
 const updateContact = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const { first_name, last_name, email, phone, company, job_title } = req.body;
+    
+    const { firstName, lastName, email, phone, company, jobTitle } = req.body;
 
     const response = await pool.query(
       "UPDATE contacts SET first_name = $1, last_name = $2, email = $3, phone = $4, company = $5, job_title = $6, updated_at = CURRENT_TIMESTAMP WHERE id = $7 RETURNING *",
-      [first_name, last_name, email, phone, company, job_title, id]
+      [firstName, lastName, email, phone, company, jobTitle, id]
     );
 
     if (response.rowCount === 0) {
